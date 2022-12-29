@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import static Comprehensive.jdbc.sqlMain.connection;
+import static Comprehensive.jdbc.sqlMain.druid_connection;
 
 public class Location {
     final static String salt = "cc114514";
@@ -37,6 +38,12 @@ public class Location {
         }
         //MD5加密+加盐二次加密
         userPwd = md5.transform(userPwd, salt);
+
+        try {
+            druid_connection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         if (type == LOGIN) {
             try {
                 //在数据库对应的数据表(login_List)查询数据，如果查到就是正确反之错误
@@ -98,6 +105,11 @@ public class Location {
         if (perpetual_calendar.userName == null) {
             return "未登录状态！";
         }
+        try {
+            druid_connection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         if (type == UPLOAD) {
             if (text.length() < 10) {
                 return "字数少于10字！";
@@ -116,6 +128,11 @@ public class Location {
     }
 
     public static @NotNull ArrayList<String> LoadEvent(int type) throws Exception {
+        try {
+            druid_connection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         if (type == GET) {
             ArrayList<String> array = new ArrayList<>();
             String sql = "SELECT event FROM calendar_data where user = ? and date = DATE(?);";
