@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="calendarDemo:jar">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="calendarDemo.jar">
+      <element id="module-output" name="calendarDemo" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/mysql-connector-java-8.0.27.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/druid-1.2.9.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
