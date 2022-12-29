@@ -5,13 +5,7 @@
  * @ToDo
  * @Author SoHugePenguin
  */
-package Comprehensive;/*
- *dingLaoZuoYe -> runMain
- *2022/12/28 16:43
- *ToDo:
- *
- * @Author: SoHugePenguin
- */
+package Comprehensive;
 
 import Comprehensive.windows.perpetual_calendar;
 

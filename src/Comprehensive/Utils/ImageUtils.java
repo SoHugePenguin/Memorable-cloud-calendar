@@ -15,14 +15,13 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class ImageUtils {
-    public static Image ball, bg1, bg2, bg3, apple, book, bookshelf, cookie, fall_icon, fish, exit_icon, iron_pickaxe, smiting;
+    public static Image ball, bg1, bg3, apple, book, bookshelf, cookie, fall_icon, fish, exit_icon, iron_pickaxe, smiting;
 
     //图片资源获取
     static {
         try {
             ball = ImageIO.read(Objects.requireNonNull(perpetual_calendar.class.getClassLoader().getResource("resources/ball.png")));
             bg1 = ImageIO.read(Objects.requireNonNull(perpetual_calendar.class.getClassLoader().getResource("resources/penguin.png")));
-            bg2 = ImageIO.read(Objects.requireNonNull(perpetual_calendar.class.getClassLoader().getResource("resources/CreateNewWorld.png")));
             bg3 = ImageIO.read(Objects.requireNonNull(perpetual_calendar.class.getClassLoader().getResource("resources/bg3.png")));
             apple = ImageIO.read(Objects.requireNonNull(perpetual_calendar.class.getClassLoader().getResource("resources/icon_apple.png")));
             book = ImageIO.read(Objects.requireNonNull(perpetual_calendar.class.getClassLoader().getResource("resources/icon_book_writable.png")));
