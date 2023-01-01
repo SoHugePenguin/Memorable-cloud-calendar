@@ -51,7 +51,8 @@ public class sqlMain {
                 create table my_first_schema.calendar_data
                 (
                     user varchar(50) comment '账号',
-                    date varchar(50) comment '日期',
+                    date date comment '日期',
+                    id int comment '编号',
                     event varchar(15000) comment '事件'
                 ) comment '万年表事件集';""";
         if (!connection.prepareStatement(tableSearch2).executeQuery().next()) {

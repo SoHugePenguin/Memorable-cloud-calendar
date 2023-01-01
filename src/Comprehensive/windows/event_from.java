@@ -20,7 +20,7 @@ public class event_from extends JFrame {
     public static String date;
     static JPanel controlPanel;
     ArrayList<String> array = new ArrayList<>();
-    int showPage = 0;
+    public static int showPage = 0;
 
     public event_from(int year, int mouth, int day) {
         this.setBounds(850, 120, 600, 600);
@@ -79,6 +79,13 @@ public class event_from extends JFrame {
             }
         });
         JButton updateButton = new JButton("修改并更新云端");
+        updateButton.addActionListener(e -> {
+            try {
+                new Prompt(Location.LoadEvent(textArea.getText(), Location.UPDATA));
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         updateButton.setFont(new Font("楷体", Font.BOLD, 32));
         left.setVisible(false);
         right.setVisible(false);

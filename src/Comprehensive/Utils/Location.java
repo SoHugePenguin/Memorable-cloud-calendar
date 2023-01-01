@@ -21,10 +21,12 @@ import static Comprehensive.jdbc.sqlMain.druid_connection;
 public class Location {
     final static String salt = "cc114514";
     final static String sql_table = "calendar_user";
+    final static String sql_table_data = "calendar_data";
     public final static int LOGIN = 0;
     public final static int REGISTER = 1;
     public final static int UPLOAD = 2;
     public final static int GET = 3;
+    public final static int UPDATA = 4;
 
     public static @NotNull String login(String userName, String userPwd, int type) {
         if (userName == null || "".equals(userName.trim())) {
@@ -114,14 +116,39 @@ public class Location {
             if (text.length() < 10) {
                 return "字数少于10字！";
             }
-            String sql = "insert into calendar_data values ( ? ,DATE(?), ?);";
+            //查询该日期的事件数量
+            String idSearch = "SELECT COUNT(*)FROM calendar_data where user = ? and date = DATE(?);";
+            PreparedStatement search = connection.prepareStatement(idSearch);
+            search.setString(1, perpetual_calendar.userName);
+            search.setString(2, event_from.date);
+            ResultSet set = search.executeQuery();
+            //写入
+            String sql = "insert into calendar_data values ( ? ,DATE(?), ? , ?);";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, perpetual_calendar.userName);
             st.setString(2, event_from.date);
-            st.setString(3, text);
+            if (set.next()) {
+                st.setInt(3, set.getInt(1));
+            }
+            st.setString(4, text);
             //防sql注入原理：遇到特殊字符自动\转义
             if (st.executeUpdate() > 0) {
                 return "上传成功！";
+            }
+        }
+
+        if (type == UPDATA) {
+            if (text.length() < 10) {
+                return "字数少于10字！";
+            }
+            String sql = "update calendar_data set event = ? where user= ? and id = ?;";
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setString(1, text);
+            pre.setString(2, perpetual_calendar.userName);
+            pre.setInt(3, event_from.showPage);
+            int set = pre.executeUpdate();
+            if (set > 0) {
+                return "修改成功！";
             }
         }
         return "ERROR";

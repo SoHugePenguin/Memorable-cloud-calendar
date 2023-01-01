@@ -41,13 +41,6 @@ public class perpetual_calendar extends JFrame {
                 mouseY = e.getY();
             }
         });
-        Toolkit.getDefaultToolkit().addAWTEventListener(new AWTEventListener() {
-            public void eventDispatched(AWTEvent event) {
-                if (event.getID() == KeyEvent.KEY_PRESSED) {
-
-                }
-            }
-        }, AWTEvent.KEY_EVENT_MASK);
     }
 
     public void launch() {
@@ -221,7 +214,7 @@ public class perpetual_calendar extends JFrame {
             mouthT = c.get(Calendar.MONTH) + 1;  //这里一月返回0
             //获取当前月第一天的星期
             weekT = (c.get(Calendar.DATE) - c.get(Calendar.DAY_OF_WEEK)) % 7;
-            if (weekT == 0) weekT = 7;
+            if (weekT == 0) weekT = 6;
             table.tablePrint(yearT, mouthT, weekT);
         }
 
